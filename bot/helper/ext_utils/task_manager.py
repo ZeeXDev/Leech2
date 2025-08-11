@@ -135,72 +135,72 @@ async def limit_checker(size, listener, isTorrent=False, isMega=False, isDriveLi
         if CLONE_LIMIT := config_dict['CLONE_LIMIT']:
             limit = CLONE_LIMIT * 1024**3
             if size > limit:
-                limit_exceeded = f'Clone limit is {get_readable_file_size(limit)}.'
+                limit_exceeded = f'La limite de clone est de {get_readable_file_size(limit)}.'
     elif isMega:
         if MEGA_LIMIT := config_dict['MEGA_LIMIT']:
             limit = MEGA_LIMIT * 1024**3
             if size > limit:
-                limit_exceeded = f'Mega limit is {get_readable_file_size(limit)}'
+                limit_exceeded = f'La limite Mega est de {get_readable_file_size(limit)}'
     elif isDriveLink:
         if GDRIVE_LIMIT := config_dict['GDRIVE_LIMIT']:
             limit = GDRIVE_LIMIT * 1024**3
             if size > limit:
-                limit_exceeded = f'Google drive limit is {get_readable_file_size(limit)}'
+                limit_exceeded = f'La limite Google Drive est de {get_readable_file_size(limit)}'
     elif isYtdlp:
         if YTDLP_LIMIT := config_dict['YTDLP_LIMIT']:
             limit = YTDLP_LIMIT * 1024**3
             if size > limit:
-                limit_exceeded = f'Ytdlp limit is {get_readable_file_size(limit)}'
+                limit_exceeded = f'La limite Ytdlp est de {get_readable_file_size(limit)}'
         if isPlayList != 0 and (PLAYLIST_LIMIT := config_dict['PLAYLIST_LIMIT']):
             if isPlayList > PLAYLIST_LIMIT:
-                limit_exceeded = f'Playlist limit is {PLAYLIST_LIMIT}'
+                limit_exceeded = f'La limite de playlist est de {PLAYLIST_LIMIT}'
     elif isTorrent:
         if TORRENT_LIMIT := config_dict['TORRENT_LIMIT']:
             limit = TORRENT_LIMIT * 1024**3
             if size > limit:
-                limit_exceeded = f'Torrent limit is {get_readable_file_size(limit)}'
+                limit_exceeded = f'La limite Torrent est de {get_readable_file_size(limit)}'
     elif DIRECT_LIMIT := config_dict['DIRECT_LIMIT']:
         limit = DIRECT_LIMIT * 1024**3
         if size > limit:
-            limit_exceeded = f'Direct limit is {get_readable_file_size(limit)}'
+            limit_exceeded = f'La limite Directe est de {get_readable_file_size(limit)}'
 
     if not limit_exceeded:
         if (LEECH_LIMIT := config_dict['LEECH_LIMIT']) and listener.isLeech:
             limit = LEECH_LIMIT * 1024**3
             if size > limit:
-                limit_exceeded = f'Leech limit is {get_readable_file_size(limit)}'
+                limit_exceeded = f'La limite Leech est de {get_readable_file_size(limit)}'
         
         if (STORAGE_THRESHOLD := config_dict['STORAGE_THRESHOLD']) and not listener.isClone:
             arch = any([listener.compress, listener.extract])
             limit = STORAGE_THRESHOLD * 1024**3
             acpt = await sync_to_async(check_storage_threshold, size, limit, arch)
             if not acpt:
-                limit_exceeded = f'You must leave {get_readable_file_size(limit)} free storage.'
+                limit_exceeded = f'Vous devez laisser {get_readable_file_size(limit)} d\'espace libre.'
 
         if config_dict['DAILY_TASK_LIMIT'] and config_dict['DAILY_TASK_LIMIT'] <= await getdailytasks(user_id):
-            limit_exceeded = f"Daily Total Task Limit: {config_dict['DAILY_TASK_LIMIT']}\nYou have exhausted all your Daily Task Limits."
+            limit_exceeded = f"Limite quotidienne de tâches : {config_dict['DAILY_TASK_LIMIT']}\nVous avez épuisé toutes vos limites quotidiennes de tâches."
         else:
             ttask = await getdailytasks(user_id, increase_task=True)
-            LOGGER.info(f"User: {user_id} | Daily Tasks: {ttask}")
+            LOGGER.info(f"Utilisateur : {user_id} | Tâches quotidiennes : {ttask}")
         if (DAILY_MIRROR_LIMIT := config_dict['DAILY_MIRROR_LIMIT']) and not listener.isLeech:
             limit = DAILY_MIRROR_LIMIT * 1024**3
             if (size >= (limit - await getdailytasks(user_id, check_mirror=True)) or limit <= await getdailytasks(user_id, check_mirror=True)):
-                limit_exceeded = f'Daily Mirror Limit is {get_readable_file_size(limit)}\nYou have exhausted all your Daily Mirror Limit.'
+                limit_exceeded = f'La limite quotidienne de Mirror est de {get_readable_file_size(limit)}\nVous avez épuisé toute votre limite quotidienne de Mirror.'
             elif not listener.isLeech:
                 msize = await getdailytasks(user_id, upmirror=size, check_mirror=True)
-                LOGGER.info(f"User : {user_id} | Daily Mirror Size : {get_readable_file_size(msize)}")
+                LOGGER.info(f"Utilisateur : {user_id} | Taille quotidienne de Mirror : {get_readable_file_size(msize)}")
         if (DAILY_LEECH_LIMIT := config_dict['DAILY_LEECH_LIMIT']) and listener.isLeech:
             limit = DAILY_LEECH_LIMIT * 1024**3
             if (size >= (limit - await getdailytasks(user_id, check_leech=True)) or limit <= await getdailytasks(user_id, check_leech=True)):
-                limit_exceeded = f'Daily Leech Limit is {get_readable_file_size(limit)}\nYou have exhausted all your Daily Leech Limit.'
+                limit_exceeded = f'La limite quotidienne de Leech est de {get_readable_file_size(limit)}\nVous avez épuisé toute votre limite quotidienne de Leech.'
             elif listener.isLeech:
                 lsize = await getdailytasks(user_id, upleech=size, check_leech=True)
-                LOGGER.info(f"User : {user_id} | Daily Leech Size : {get_readable_file_size(lsize)}")
+                LOGGER.info(f"Utilisateur : {user_id} | Taille quotidienne de Leech : {get_readable_file_size(lsize)}")
     if limit_exceeded:
         if size:
-            return f"{limit_exceeded}.\nYour List/File/Folder size is {get_readable_file_size(size)}."
+            return f"{limit_exceeded}.\nLa taille de votre liste/fichier/dossier est {get_readable_file_size(size)}."
         elif isPlayList != 0:
-            return f"{limit_exceeded}.\nYour playlist has {isPlayList} files."
+            return f"{limit_exceeded}.\nVotre playlist contient {isPlayList} fichiers."
 
 
 async def task_utils(message):
@@ -224,9 +224,9 @@ async def task_utils(message):
             if _msg:
                 msg.append(_msg)
     if (uti := config_dict['USER_TIME_INTERVAL']) != 0 and (ut := await timeval_check(user_id)):
-        msg.append(f"Please Wait {get_readable_time(ut)}, Users have time interval Restrictions for {get_readable_time(uti)}.")
+        msg.append(f"Veuillez patienter {get_readable_time(ut)}, les utilisateurs ont des restrictions d'intervalle de temps de {get_readable_time(uti)}.")
     if (bmax_tasks := config_dict['BOT_MAX_TASKS']) and len(download_dict) >= bmax_tasks:
-        msg.append(f"Bot Max Tasks limit exceeded.\nBot max tasks limit is {bmax_tasks}.\nPlease wait for the completion of other tasks.")
+        msg.append(f"Limite maximale de tâches du bot dépassée.\nLa limite maximale de tâches du bot est de {bmax_tasks}.\nVeuillez attendre la fin des autres tâches.")
     if (maxtask := config_dict['USER_MAX_TASKS']) and await get_user_tasks(message.from_user.id, maxtask):
-        msg.append(f"Your tasks limit exceeded for {maxtask} tasks")
+        msg.append(f"Votre limite de tâches est dépassée pour {maxtask} tâches")
     return msg, button

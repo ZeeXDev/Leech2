@@ -26,23 +26,23 @@ from bot.helper.mirror_utils.upload_utils.ddlserver.gofile import Gofile
 from bot.helper.themes import BotTheme
 
 handler_dict = {}
-desp_dict = {'rcc': ['RClone is a command-line program to sync files and directories to and from different cloud storage providers like GDrive, OneDrive...', 'Send rclone.conf. \n<b>Timeout:</b> 60 sec'],
-            'lprefix': ['Leech Filename Prefix is the Front Part attacted with the Filename of the Leech Files.', 'Send Leech Filename Prefix. Documentation Here : <a href="https://t.me/WZML_X/77">Click Me</a> \n<b>Timeout:</b> 60 sec'],
-            'lsuffix': ['Leech Filename Suffix is the End Part attached with the Filename of the Leech Files', 'Send Leech Filename Suffix. Documentation Here : <a href="https://t.me/WZML_X/77">Click Me</a> \n<b>Timeout:</b> 60 sec'],
-            'lremname': ['Leech Filename Remname is combination of Regex(s) used for removing or manipulating Filename of the Leech Files', 'Send Leech Filename Remname. Documentation Here : <a href="https://t.me/WZML_X/77">Click Me</a> \n<b>Timeout:</b> 60 sec'],
-            'lcaption': ['Leech Caption is the Custom Caption on the Leech Files Uploaded by the bot', 'Send Leech Caption. You can add HTML tags. Documentation Here : <a href="https://t.me/WZML_X/77">Click Me</a> \n<b>Timeout:</b> 60 sec'],
-            'ldump': ['Leech Files User Dump for Personal Use as a Storage.', 'Send Leech Dump Channel ID\n➲ <b>Format:</b> \ntitle chat_id/@username\ntitle2 chat_id2/@username2. \n\n<b>NOTE:</b>Make Bot Admin in the Channel else it will not accept\n<b>Timeout:</b> 60 sec'],
-            'mprefix': ['Mirror Filename Prefix is the Front Part attacted with the Filename of the Mirrored/Cloned Files.', 'Send Mirror Filename Prefix. \n<b>Timeout:</b> 60 sec'],
-            'msuffix': ['Mirror Filename Suffix is the End Part attached with the Filename of the Mirrored/Cloned Files', 'Send Mirror Filename Suffix. \n<b>Timeout:</b> 60 sec'],
-            'mremname': ['Mirror Filename Remname is combination of Regex(s) used for removing or manipulating Filename of the Mirrored/Cloned Files', 'Send Mirror Filename Remname. \n<b>Timeout:</b> 60 sec'],
-            'thumb': ['Custom Thumbnail to appear on the Leeched files uploaded by the bot', 'Send a photo to save it as custom thumbnail. \n<b>Alternatively: </b><code>/cmd [photo] -s thumb</code> \n<b>Timeout:</b> 60 sec'],
-            'yt_opt': ['YT-DLP Options is the Custom Quality for the extraction of videos from the yt-dlp supported sites.', 'Send YT-DLP Options. Timeout: 60 sec\nFormat: key:value|key:value|key:value.\nExample: format:bv*+mergeall[vcodec=none]|nocheckcertificate:True\nCheck all yt-dlp api options from this <a href="https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L184">FILE</a> to convert cli arguments to api options.'],
-            'usess': [f'User Session is Telegram Session used to Download Private Contents from Private Channels with no compromise in Privacy, Build with Encryption.\n{"<b>Warning:</b> This Bot is not secured. We recommend asking the group owner to set the Upstream repo to the Official repo. If it is not the official repo, then WZML-X is not responsible for any issues that may occur in your account." if config_dict["UPSTREAM_REPO"] != "https://github.com/weebzone/WZML-X" else "Bot is Secure. You can use the session securely."}', 'Send your Session String.\n<b>Timeout:</b> 60 sec'],
-            'split_size': ['Leech Splits Size is the size to split the Leeched File before uploading', f'Send Leech split size in any comfortable size, like 2Gb, 500MB or 1.46gB. \n<b>PREMIUM ACTIVE:</b> {IS_PREMIUM_USER}. \n<b>Timeout:</b> 60 sec'],
-            'ddl_servers': ['DDL Servers which uploads your File to their Specific Hosting', ''],
-            'user_tds': [f'UserTD helps to Upload files via Bot to your Custom Drive Destination via Global SA mail\n\n➲ <b>SA Mail :</b> {"Not Specified" if "USER_TD_SA" not in config_dict else config_dict["USER_TD_SA"]}', 'Send User TD details for Use while Mirror/Clone\n➲ <b>Format:</b>\nname id/link index(optional)\nname2 link2/id2 index(optional)\n\n<b>NOTE:</b>\n<i>1. Drive ID must be valid, then only it will accept\n2. Names can have spaces\n3. All UserTDs are updated on every change\n4. To delete specific UserTD, give Name(s) separated by each line</i>\n\n<b>Timeout:</b> 60 sec'],
-            'gofile': ['Gofile is a free file sharing and storage platform. You can store and share your content without any limit.', "Send GoFile's API Key. Get it on https://gofile.io/myProfile, It will not be Accepted if the API Key is Invalid !!\n<b>Timeout:</b> 60 sec"],
-            'streamtape': ['Streamtape is free Video Streaming & sharing Hoster', "Send StreamTape's Login and Key\n<b>Format:</b> <code>user_login:pass_key</code>\n<b>Timeout:</b> 60 sec"],
+desp_dict = {'rcc': ['RClone est un programme en ligne de commande pour synchroniser des fichiers et répertoires vers et depuis différents services de stockage cloud comme GDrive, OneDrive...', 'Envoyez rclone.conf. \n<b>Délai :</b> 60 sec'],
+            'lprefix': ['Le préfixe de nom de fichier pour le téléchargement est la partie avant attachée au nom des fichiers téléchargés.', 'Envoyez le préfixe de nom de fichier pour le téléchargement. Documentation ici : <a href="https://t.me/WZML_X/77">Cliquez ici</a> \n<b>Délai :</b> 60 sec'],
+            'lsuffix': ['Le suffixe de nom de fichier pour le téléchargement est la partie après attachée au nom des fichiers téléchargés', 'Envoyez le suffixe de nom de fichier pour le téléchargement. Documentation ici : <a href="https://t.me/WZML_X/77">Cliquez ici</a> \n<b>Délai :</b> 60 sec'],
+            'lremname': ['Le renommage de fichier pour le téléchargement est une combinaison de Regex utilisée pour supprimer ou modifier le nom des fichiers téléchargés', 'Envoyez le renommage de fichier pour le téléchargement. Documentation ici : <a href="https://t.me/WZML_X/77">Cliquez ici</a> \n<b>Délai :</b> 60 sec'],
+            'lcaption': ['La légende pour le téléchargement est la description personnalisée sur les fichiers téléchargés par le bot', 'Envoyez la légende pour le téléchargement. Vous pouvez ajouter des balises HTML. Documentation ici : <a href="https://t.me/WZML_X/77">Cliquez ici</a> \n<b>Délai :</b> 60 sec'],
+            'ldump': ['Le canal de stockage pour les fichiers téléchargés pour un usage personnel.', 'Envoyez l\'ID du canal de stockage\n➲ <b>Format :</b> \ntitre chat_id/@username\ntitre2 chat_id2/@username2. \n\n<b>NOTE :</b>Rendez le bot admin dans le canal sinon il n\'acceptera pas\n<b>Délai :</b> 60 sec'],
+            'mprefix': ['Le préfixe de nom de fichier pour le miroir est la partie avant attachée au nom des fichiers miroir/clonés.', 'Envoyez le préfixe de nom de fichier pour le miroir. \n<b>Délai :</b> 60 sec'],
+            'msuffix': ['Le suffixe de nom de fichier pour le miroir est la partie après attachée au nom des fichiers miroir/clonés', 'Envoyez le suffixe de nom de fichier pour le miroir. \n<b>Délai :</b> 60 sec'],
+            'mremname': ['Le renommage de fichier pour le miroir est une combinaison de Regex utilisée pour supprimer ou modifier le nom des fichiers miroir/clonés', 'Envoyez le renommage de fichier pour le miroir. \n<b>Délai :</b> 60 sec'],
+            'thumb': ['Une miniature personnalisée à afficher sur les fichiers téléchargés par le bot', 'Envoyez une photo pour la sauvegarder comme miniature personnalisée. \n<b>Alternative : </b><code>/cmd [photo] -s thumb</code> \n<b>Délai :</b> 60 sec'],
+            'yt_opt': ['Les options YT-DLP sont les paramètres de qualité personnalisés pour l\'extraction de vidéos depuis les sites supportés par yt-dlp.', 'Envoyez les options YT-DLP. Délai : 60 sec\nFormat : clé:valeur|clé:valeur|clé:valeur.\nExemple : format:bv*+mergeall[vcodec=none]|nocheckcertificate:True\nVoir toutes les options de l\'API yt-dlp depuis ce <a href="https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L184">FICHIER</a> pour convertir les arguments CLI en options API.'],
+            'usess': [f'La session utilisateur est une session Telegram utilisée pour télécharger des contenus privés depuis des canaux privés sans compromettre la confidentialité, construite avec chiffrement.\n{"<b>Attention :</b> Ce bot n\'est pas sécurisé. Nous recommandons de demander au propriétaire du groupe de définir le dépôt upstream comme étant le dépôt officiel. Si ce n\'est pas le dépôt officiel, alors WZML-X n\'est pas responsable des problèmes qui pourraient survenir sur votre compte." if config_dict["UPSTREAM_REPO"] != "https://github.com/weebzone/WZML-X" else "Le bot est sécurisé. Vous pouvez utiliser la session en toute sécurité."}', 'Envoyez votre chaîne de session.\n<b>Délai :</b> 60 sec'],
+            'split_size': ['La taille de division pour le téléchargement est la taille à laquelle diviser le fichier téléchargé avant l\'upload', f'Envoyez la taille de division pour le téléchargement dans n\'importe quelle unité, comme 2Gb, 500MB ou 1.46gB. \n<b>PREMIUM ACTIF :</b> {IS_PREMIUM_USER}. \n<b>Délai :</b> 60 sec'],
+            'ddl_servers': ['Les serveurs DDL qui uploadent vos fichiers vers leurs hébergements spécifiques', ''],
+            'user_tds': [f'UserTD permet d\'uploader des fichiers via le bot vers votre destination Drive personnalisée via le mail SA global\n\n➲ <b>Mail SA :</b> {"Non spécifié" if "USER_TD_SA" not in config_dict else config_dict["USER_TD_SA"]}', 'Envoyez les détails UserTD pour utilisation lors des miroirs/clonages\n➲ <b>Format :</b>\nnom id/lien index(optionnel)\nnom2 lien2/id2 index(optionnel)\n\n<b>NOTE :</b>\n<i>1. L\'ID Drive doit être valide, sinon il ne sera pas accepté\n2. Les noms peuvent contenir des espaces\n3. Tous les UserTD sont mis à jour à chaque changement\n4. Pour supprimer un UserTD spécifique, donnez le(s) nom(s) séparés par ligne</i>\n\n<b>Délai :</b> 60 sec'],
+            'gofile': ['Gofile est une plateforme gratuite de partage et stockage de fichiers. Vous pouvez stocker et partager votre contenu sans limite.', "Envoyez la clé API de GoFile. Obtenez-la sur https://gofile.io/myProfile, Elle ne sera pas acceptée si la clé API est invalide !!\n<b>Délai :</b> 60 sec"],
+            'streamtape': ['Streamtape est un hébergeur gratuit de streaming vidéo', "Envoyez le login et la clé StreamTape\n<b>Format :</b> <code>user_login:pass_key</code>\n<b>Délai :</b> 60 sec"],
             }
 fname_dict = {'rcc': 'RClone',
              'lprefix': 'Prefix',
@@ -249,13 +249,13 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
             buttons.ibutton(f"Change {fname_dict[key]}" if set_exist and set_exist != 'Not Exists' and (set_exist != get_readable_file_size(config_dict['LEECH_SPLIT_SIZE']) + ' (Default)') else f"Set {fname_dict[key]}", f"userset {user_id} {key} edit")
         else:
             text += '\n\n' + desp_dict[key][1]
-            buttons.ibutton("Stop Change", f"userset {user_id} {key}")
+            buttons.ibutton("Arreté le changement", f"userset {user_id} {key}")
         if set_exist and set_exist != 'Not Exists' and (set_exist != get_readable_file_size(config_dict['LEECH_SPLIT_SIZE']) + ' (Default)'):
             if key == 'thumb':
-                buttons.ibutton("View Thumbnail", f"userset {user_id} vthumb", "header")
+                buttons.ibutton("Voir la Miniature", f"userset {user_id} vthumb", "header")
             elif key == 'user_tds':
                 buttons.ibutton('Show UserTDs', f"userset {user_id} show_tds", "header")
-            buttons.ibutton("↻ Delete", f"userset {user_id} d{key}")
+            buttons.ibutton("↻ Supprimé", f"userset {user_id} d{key}")
         buttons.ibutton("Back", f"userset {user_id} back {edit_type}", "footer")
         buttons.ibutton("Close", f"userset {user_id} close", "footer")
         button = buttons.build_menu(2)
@@ -278,22 +278,22 @@ async def user_settings(client, message):
                 return await set_custom(client, reply_to, msg, set_arg, True)
             elif set_arg == 'thumb' and reply_to.media:
                 return await set_thumb(client, reply_to, msg, set_arg, True)
-        await editMessage(msg, '''㊂ <b><u>Available Flags :</u></b>
->> Reply to the Value with appropriate arg respectively to set directly without opening USet.
+        await editMessage(msg, '''㊂ <b><u>Options disponibles :</u></b>
+>> Répondez avec l'argument approprié pour configurer directement sans menu.
 
-➲ <b>Custom Thumbnail :</b>
+➲ <b>Miniature personnalisée :</b>
     /cmd -s thumb
-➲ <b>Leech Filename Prefix :</b>
+➲ <b>Préfixe pour les fichiers :</b>
     /cmd -s lprefix
-➲ <b>Leech Filename Suffix :</b>
+➲ <b>Suffixe pour les fichiers :</b>
     /cmd -s lsuffix
-➲ <b>Leech Filename Remname :</b>
+➲ <b>Renommage des fichiers :</b>
     /cmd -s lremname
-➲ <b>Leech Filename Caption :</b>
+➲ <b>Légende personnalisée :</b>
     /cmd -s lcaption
-➲ <b>YT-DLP Options :</b>
+➲ <b>Options YT-DLP :</b>
     /cmd -s yt_opt
-➲ <b>Leech User Dump :</b>
+➲ <b>Dossier de destination :</b>
     /cmd -s ldump''')
     else:
         from_user = message.from_user

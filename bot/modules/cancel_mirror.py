@@ -36,7 +36,7 @@ async def cancel_mirror(_, message):
         return
     if OWNER_ID != user_id and dl.message.from_user.id != user_id and \
        (user_id not in user_data or not user_data[user_id].get('is_sudo')):
-        await sendMessage(message, "This task is not for you!")
+        await sendMessage(message, "Hey. fait gaf à toi. cette tâche n'est pas la tienne!")
         return
     obj = dl.download()
     await obj.cancel_download()
@@ -72,7 +72,7 @@ async def cancell_all_buttons(_, message):
     buttons.ibutton("All", "canall all")
     buttons.ibutton("Close", "canall close")
     button = buttons.build_menu(2)
-    can_msg = await sendMessage(message, 'Choose tasks to cancel.', button)
+    can_msg = await sendMessage(message, 'Choisis une tâche à annuler.', button)
     await auto_delete_message(message, can_msg)
 
 

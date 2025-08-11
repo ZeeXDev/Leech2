@@ -124,7 +124,7 @@ async def get_telegraph_list(telegraph_content):
     if len(path) > 1:
         await telegraph.edit_telegraph(path, telegraph_content)
     buttons = ButtonMaker()
-    buttons.ubutton("🔎 VIEW", f"https://te.legra.ph/{path[0]}")
+    buttons.ubutton("🔎 VOIR", f"https://te.legra.ph/{path[0]}")
     buttons, _ = extra_btns(buttons)
     return buttons.build_menu(1)
 
@@ -141,9 +141,9 @@ def get_progress_bar_string(pct):
     p = min(max(pct, 0), 100)
     cFull = int(p // 8)
     cPart = int(p % 8 - 1)
-    p_str = '■' * cFull
+    p_str = '▣' * cFull
     if cPart >= 0:
-        p_str += ['▤', '▥', '▦', '▧', '▨', '▩', '■'][cPart]
+        p_str += ['▤', '▥', '☆', '▧', '▨', '★', '▣'][cPart]
     p_str += '□' * (12 - cFull)
     return f"[{p_str}]"
 
@@ -662,7 +662,7 @@ async def checking_access(user_id, button=None):
             button = ButtonMaker()
         encrypt_url = b64encode(f"{token}&&{user_id}".encode()).decode()
         button.ubutton('Generate New Token', short_url(f'https://t.me/{bot_name}?start={encrypt_url}'))
-        return f'<i>Temporary Token has been expired,</i> Kindly generate a New Temp Token to start using bot Again.\n<b>Validity :</b> <code>{get_readable_time(config_dict["TOKEN_TIMEOUT"])}</code>', button
+        return f'<i>Le Token temporaire a expiré,</i> Va gentiment généré un autre token pour m\'utiliseé à nouveau.\n<b>Validité :</b> <code>{get_readable_time(config_dict["TOKEN_TIMEOUT"])}</code>', button
     return None, button
 
 
@@ -680,15 +680,15 @@ async def set_commands(client):
         bot_cmds = [
             BotCommand(
                 BotCommands.MirrorCommand[0],
-                f'or /{BotCommands.MirrorCommand[1]} Mirror [links/media/rclone_path]',
+                f'or /{BotCommands.MirrorCommand[1]} Mirror [Lien/media/rclone_path]',
             ),
             BotCommand(
                 BotCommands.LeechCommand[0],
-                f'or /{BotCommands.LeechCommand[1]} Leech [links/media/rclone_path]',
+                f'or /{BotCommands.LeechCommand[1]} Leech [lien/media/rclone_path]',
             ),
             BotCommand(
                 BotCommands.QbMirrorCommand[0],
-                f'or /{BotCommands.QbMirrorCommand[1]} Mirror magnet/torrent using qBittorrent',
+                f'or /{BotCommands.QbMirrorCommand[1]} Magnet mirror/torrent utilisant qBittorrent',
             ),
             BotCommand(
                 BotCommands.QbLeechCommand[0],

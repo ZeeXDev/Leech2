@@ -51,7 +51,7 @@ async def gen_mediainfo(message, link=None, media=None, mmsg=None):
     finally:
         await aioremove(des_path)
     link_id = (await telegraph.create_page(title='MediaInfo X', content=tc))["path"]
-    await temp_send.edit(f"<b>MediaInfo:</b>\n\n➲ <b>Link :</b> https://graph.org/{link_id}", disable_web_page_preview=False)
+    await temp_send.edit(f"<b>MediaInfo:</b>\n\n➪ <b>Link :</b> https://graph.org/{link_id}", disable_web_page_preview=False)
 
 
 section_dict = {'General': '🗒', 'Video': '🎞', 'Audio': '🔊', 'Text': '🔠', 'Menu': '🗃'}
